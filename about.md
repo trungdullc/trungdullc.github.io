@@ -1,15 +1,9 @@
----
-layout: page
-title: About
-permalink: /about/
----
-
-Some information about you!
+Future Programmer: Trung Du;<br>
+Just an asian coder that likes food;<br>
+Has a love/hate relationship with semicolons;<br>
 
 ### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+Graduated from College;<br>
 
 ### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+[duprogramllc@gmail.com](mailto:duprogramllc@gmail.com)

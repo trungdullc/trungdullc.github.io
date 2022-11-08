@@ -1,0 +1,152 @@
+====================================================== QUICK BASICS ======================================================
+Step 00 (Optional): Host creates a new public repository w/ default master/main branch
+	Start a new repository > trungdullc/test_repo
+	> Public
+	> Create a new repository
+	> Copy HTTPS link: https://github.com/trungdullc/test_repo.git
+	> Copy SSH link: git@github.com:trungdullc/test_repo.git
+
+Step 01A (Optional): Host creates a new public repository on the command line
+	$ echo "# test_repo" >> README.md
+	$ git init
+	$ git add README.md
+	$ git commit -m "first commit"
+	$ git branch -M main
+	$ git remote add origin https://github.com/trungdullc/test_repo.git
+	$ git push -u origin main
+
+Step 01B: Quick setup w/ Commit/Save a new file README.md
+	creating a new file
+	Code > test_repo/Name your file: README.md in main
+	Edit new file
+	1 Welcome to Coder Du's GitHub repo
+	2 Updated information seen below
+	3 11/7/2022 Created README.md
+	Title: Create README.md
+	Description: Welcome to my GitHub portal
+	Commit new file
+
+Step 02: Create new feature branch
+	Code > main > Find or create a branch: player_movement_01 > Create branch
+
+Step 03: Create new .txt in player_movement_01 and compare with main branch
+	Code > Add file > Create new file
+	test_repo/Name your file: playermovement.txt in player_movement01
+	Edit new file: This is a demo of playermovement
+	Title: Create player movement.txt
+	Description: 
+	Commit directly to the player_movement_01 branch
+	Commit new file
+Important: Notice in player_movement_01 branch has playermovement.txt
+Important: Switch to main branch and not see it
+Situation: Pretend we like the new feature and want to add to main branch
+
+Step 04: Share proposed commit by open compare & pull request to apply to main branch
+	player_movement_01 > Pull requests > New pull request >
+	base: main
+	compare: player_movement_01
+	> Create pull request
+	Title: Create player movement.txt
+	Comment: Added playermovement.txt to main
+	> Create pull request
+
+Step 05: If host approves merge adds changes in pull request to main branch
+	Check:
+		Pull request > File changed
+		Pull request > Commits
+	Pull request > click on requester's merge request > Merge pull request > Confirm merge
+	main > View all branches > Delete
+
+====================================================== HOST/COLLABORATORS BASIC ======================================================
+Step 00: Add collaborators to repository w/ main branch protection rules
+	Settings > Collaborators > 
+	Add userID or email > Add collaborator
+
+Step 02: View commit to main or feature branches
+	Code > main > commits
+
+Step 03: Assign yourself as a reviewer
+	Pull requests > Click request > Reviewers > 
+
+Step 04: Leave a review
+	Identify issues, risks, limitations
+	Suggest changes & improvements
+	Highlight what author did well and should keep doing
+	Pull requests > Click request > Files changed > Review changes > Submit review
+
+Step 05: Suggest changes
+	Pull requests > Click request > Files changed > to right of line number click +
+
+Step 06: Apply suggested changes and wait for Host to merge pull request
+
+====================================================== Styling README.md Basics ======================================================
+Tip 01: Add Headers
+	main > README.md > Edit this file > 
+		# put text in here		<h1> largest
+		###### put test here		<h6> smallest
+	Preview > Commit changes
+
+Tip 02: Add Image, center it w/ resize
+	main > README.md > Edit this file > 
+		<p align = "center">
+		<img alt="Image of Yaktocat" src="https://octodex.github.com/images/yaktocat.png" width="128" height="128">
+		</p>
+	Preview > Commit changes
+
+Tip 03: Add code example
+	``` diff
+	$ git init
+	Initializes empty Git repository to be able to use Git
+	Tip: ` is under esc key not single '
+	GitHub Markdown documentation for color tags: diff, json, html, js, css
+	- text in red
+	+ text in green
+	! text in orange
+	# text in gray
+	@@ text in purple (and bold)@@
+
+Tip 04: Add task list
+	How to create a task list
+	- [x] Create a new repository named test_repo
+	- [ ] Finish creating test_repo
+
+====================================================== .gitignore Basic ======================================================
+Tip 01:
+	node_modules		# ignore folder
+	secret.txt		# ignore specific file
+	*.log			# ignore all log files
+
+====================================================== Remove all GitHub commits Basic ======================================================
+Tip 01: Bad idea if trying to track history
+	Code > Download ZIP
+	Settings > Danger Zone > Delete this repository
+	New > Create a new repository
+	(Copy Downloaded Zip to new repository)
+
+====================================================== Setup GitHub Site/Blog Advanced ======================================================
+Step 01: Enable GitHub Pages
+	+ (open new tab on Safari/Firefox)
+	Settings > Pages > Source: Deploy from a branch
+		Branch > main/root > Save
+		Domain: trungdullc.github.io
+
+Step 02: Configure post with Jekyll
+	https://github.com/barryclark/jekyll-now > Fork
+	trungdullc/jekyll-now > Settings > General > Repository name: trungdullc.github.io > Rename
+	Code > _post
+	Add file > Create new file
+	file must be named: _post/YYYY-MM-DD-title.md
+
+Step 03: Configure About
+	about.md
+
+Step 04: Configure themes
+	_layouts > 
+
+Step 05: Store all images in images
+	_post > (link to images w/ <image src="">)
+
+Step 06: _config.yml is most important file
+	
+Step 07: Remember your blog page
+	https://trungdullc.github.io/

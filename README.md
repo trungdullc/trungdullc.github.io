@@ -1,8 +1,14 @@
-# Welcome to Coder Du's GitHub repo
+<h1 align="center">Welcome to Coder Du's GitHub repo</h1>
 
 <p align = "center">
 <img alt="Image of Yaktocat" src="https://octodex.github.com/images/yaktocat.png" width="128" height="128">
 </p>
+
+Markdown Cheatsheet:<br>
+Fonts:<br>
+_italics_<br>
+**bold**<br>
+`code()`<br>
 
 ``` diff
 $ git init
@@ -15,12 +21,6 @@ GitHub Markdown documentation for color tags: diff, json, html, js, javascript, 
 # text in gray
 @@ text in purple (and bold)@@
 ```
-
-Markdown Cheatsheet:<br>
-Fonts:<br>
-_italics_<br>
-**bold**<br>
-`code()`<br>
 
 My GitHub Link: [Du's GitHub](https://github.com/trungdullc/trungdullc.github.io)<br>
 My GitHub Blog: <a href="https://trungdullc.github.io">Du's Blog</a><br>
@@ -48,5 +48,5 @@ Alternate Method of adding Image:<br>
 Horizontal Lines:
 ----
 ****
-Updated information seen below
+Updated information seen below<br>
 11/7/2022 Created README.md

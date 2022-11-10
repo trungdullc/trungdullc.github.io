@@ -1,0 +1,202 @@
+=== Git History ===
+Git uses a distributed system so each computer has a copy and doesn't depend on a centralized system
+
+=== Important Things to Know ===
+. means all stuff in directory
+HEAD branch is current active/checkout branch
+
+=== Git Installation ===
+VSC w/ GitLens extension
+$ cd Desktop
+$ mkdir git
+$ cd git
+$ git config --global user.name "Trung Du"
+$ git config --global user.email duprogramllc@gmail.com
+$ git config --global core.editor "vim"
+Important: Edit .gitconfig
+	$ git config --global -e
+Important: Edit End of Line so no Issuess
+	Windows: 		\n || \r		$ git config --global core.autocrlf true
+	macOs/Linus:		\n			$ git config --global core.autocrlf input
+$ git config --help
+
+=== Git Object Types Advanced===
+Blobs (Binary Large OBject)(Files)
+Trees (Directories)
+Commits
+*Annotated Tags
+
+Stored untracked file in .git/objects/ using OpenSSL SHA library to calculate SHA-1 hash of blob
+Then code uses Zlib library to compress blob into a new file named calculated from SHA-1 hash
+Note: Git never deletes a blob, it will redirect
+
+=== Git Workflow ===
+Working Directory		Folder w/ current version of tracked and untracked Files
+Staging Area				File about to be committed to repository
+Repository		  		Saved as HASH-1 obj
+
+=== git Most used commands ===
+$ git status
+$ git branch -v			(shows all branches)
+$ git log			    	(view History)
+
+=== git Basic commands ===
+$ git ls-files			See Files in Staging Area
+$ git show [SHA-1_commit]
+$ git ls-tree HEAD		(See all Files in a commit, replace HEAD w/ SHA-1 of a tree)
+
+==== QUICK BASICS ====
+Step 00 : Host creates a local new repository on the command line w/ default master/main branch
+	$ cd Desktop/git
+	$ mkdir test_repo
+	$ cd test_repo
+	Hidden Files, MacOS:	[command] + [shift] + [.]
+	$ git init
+	$ ls -ltra
+	$ open .
+=== Remove .git ===
+Important: If rm .git will lose commits
+	$ rm -rf .git
+
+Step 01: Quick setup w/ Commit/Save a new file README.md
+	$ echo "# Created by Trung Du" > README.md
+	$ vim README.md
+	$ git add README.md					(add to staging area)
+	$ git commit -m "first commit"
+	// $ git commit						  (use this if commit is long but < 80 characters)
+	Note: Given SHA-1 hash
+	Important: Once commit, staging area is not cleared
+	Note: If edit file again, staging area contains old version of file even if delete in Working Directory
+	// $ git commit -am "first commit"	(skips staging area and commits)
+	$ git branch -M main					(rename branch)
+	$ git remote add origin https://github.com/trungdullc/test_repo.git
+	$ git push -u origin main
+
+=== Remove a File from Working Directory and Staging Area ===
+$ rm file1.txt file2.txt
+$ git status
+$ git add file1.txt file2.txt
+$ git commit -m "removed file safely"
+	// $ git rm file1.txt file2.txt		(shortcut)
+	// $ git commit -m "removed file safely"
+
+=== Rename/Move a File ===
+$ mv index.txt index.html
+$ git status
+$ git add index.txt
+$ git add index.html
+	// $ git mv index.txt index.html		(shortcut)
+	// $ git commit -m "renamed file"
+
+=== Undo Local Changes of untracked files (Remove) ===
+$ git clean -fd
+
+=== Ignoring Files ===
+$ mkdir logs
+$ echo "Hello" > logs/dev.log
+$ git status
+$ echo logs/dev.log > .gitignore
+$ echo *.log >> .gitignore
+$ git status
+$ git add .gitignore
+$ git commit -m "Add .gitignore"
+Important: Even if listed in ignore, if file is in accidentally tracked by commit
+and in staging area must rm from staging area
+$ mkdir bin
+$ echo "Hello" > bin/app.bin
+$ git status
+$ git add .					(added all changes to staging area)
+$ git commit -m "Add bin"		(accidentally committed)
+$ echo "bin/" >> .gitignore	(but not work since tracking, have to rm from staging area)
+$ git add .
+$ git commit -m "Included bin/ to .gitignore"
+$ git ls-files				(view files in staging area)
+Important: $ git rm --cached -r bin/		(rm file from just staging area)
+$ git commit -m "Removed bin directory that was accidentally commited
+Important: If using .gitignore w/ GitHub check out templates github.com/github/gitignore
+
+=== View Stage and Unstaged Changes ===
+$ echo "Hello" > file4.txt
+$ git add file4.txt
+$ git commit -m "Added file4.txt"
+$ echo "Bye" > file4.txt
+	Note: git restore file4.txt		(Unstage File)
+	Note: git reset file4.txt			(Alternate Unstage File)
+$ git diff --staged
+Note: The command above will compare staged old file with new version of file in working directory
+// $ git diff	(will compare working directory vs staging area)
+Important: Easier method use VSC
+
+=== Viewing Commit History ===
+$ git log
+$ git log -h
+$ git log --oneline
+$ git log --oneline --reverse
+Ex) commit 49e1aae689a596b45010c55a22ab919b6b957d22 (HEAD -> main)
+
+=== View Commit ==
+$ git show 49e1
+$ git show 4608:README.md		(shows what in file at that commit time)
+
+=== Restoring File to Earlier Version ===
+$ echo "Hello" > file5.txt
+$ git add file5.txt
+$ git commit -m "added file5.txt"
+$ git rm file5.txt			(accidentally rm from working directory and staging area)
+$ git log --oneline
+$ git restore --source=HEAD file5.txt
+
+=== Create New Local Branch name feature_1 ===
+$ git branch feature_1			(start out on main)
+$ git branch feature_1 [SHA-1]	(start out on another version of main)
+
+=== Switching Local Branches ===
+$ git checkout feature_1
+$ git switch feature_1			(alternate)
+
+=== Rename Local Branch ===
+$ git branch -m feature1			(old_name = HEAD = feature_1)
+$ git branch -m <old_name> <new_name>
+
+=== Delete Local Branch ===
+Note: Can't delete from HEAD branch
+$ git switch main
+$ git branch -d feature1
+
+=== Delete Remote Branch ===
+$ git push origin --delete <remote_branch>
+
+=== Rename Remote Branch ===
+# Delete current remote Branch
+	$ git push origin --delete <old_name>
+# Push Local Branch to Remote Branch
+	$ git push -u origin <new_name>	(remote origin branch)
+
+=== Publishing to Remote Branch ===
+Note: Can't create a new remote branch from git
+# Upload local branch for first time
+	$ git push -u <local_branch>
+
+=== Downloading from Remote Branch ===
+$ git branch --track <local_branch> origin/<remote_branch>
+$ git checkout --track origin/<remote_branch>		(alternate)
+
+=== Downloading/Stealing Remote Branch evolve from original ===
+GitHub > Forking Button
+
+=== Pulling + Pushing Branches w/o tracking (use above w/ tracking)===
+$ git pull
+$ git push
+$ git branch -v
+
+=== Merging Local Branch to main ===
+$ git switch main
+$ git merge <local_branch>
+// $ git rebase <local_branch>	(alternate)
+$ git branch -d <local_branch>
+
+=== Comparing Local Branches ===
+$ git log main..<local_branch>
+
+=== Comparing Remote and Local Branches ===
+$ git log origin/main..main

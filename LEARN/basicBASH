@@ -1,0 +1,41 @@
+Version:
+git --version
+
+History:
+history
+!<line_number>
+
+Help:
+man ls
+
+Hacking/Override
+sudo
+
+Navigation:
+pwd
+ls -ltra | grep "<search>" | less | more | tail
+locate <file_name>
+cd ../..
+
+Directory Modifying:
+mkdir <folder_name>
+rm -rf <folder/file name>
+
+File Modifying:
+sudo chmod -x <filename>   -777
+sudo chown trung <filename>
+mv <old><new>
+cp <old><new>
+
+New File:
+echo -e > newfile1.txt    ignore special characters 
+echo -n >> newfile1.txt   no new line
+touch <new_file>
+vim nano code emac gedit
+cat <file> >> newfile1.txt
+
+Others:
+clear
+top
+ps aux
+kill -9 <pid_number>

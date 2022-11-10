@@ -1,0 +1,15 @@
+Movement:
+  :set number
+  <line_number>G
+
+Editing:
+  i a
+  o     (open new line below current line)
+  x dw 3dd
+  r             (replace a character)
+  u             (undo)
+  [control] + r (redo)
+
+Saving:
+  :wq
+  :q!

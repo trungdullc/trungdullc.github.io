@@ -68,7 +68,9 @@ Step 01: Quick setup w/ Commit/Save a new file README.md
 	Important: Once commit, staging area is not cleared
 	Note: If edit file again, staging area contains old version of file even if delete in Working Directory
 	// $ git commit -am "first commit"	(skips staging area and commits)
-	$ git branch -M main					(rename branch)
+	$ git branch -m main					(rename branch)
+	Note: Better to create Remote repository from GitHub
+	GitHub > Repositories > New trungdullc/test_repo	(same name as local folder)
 	$ git remote add origin https://github.com/trungdullc/test_repo.git
 	$ git push -u origin main
 
@@ -175,7 +177,10 @@ $ git push origin --delete <remote_branch>
 === Publishing to Remote Branch ===
 Note: Can't create a new remote branch from git
 # Upload local branch for first time
-	$ git push -u <local_branch>
+	$ git push -u origin main
+
+=== Downloading from Remote Branch w/ SSH URL ===
+$ git clone git@github.com:trungdullc/test_repo.git
 
 === Downloading from Remote Branch ===
 $ git branch --track <local_branch> origin/<remote_branch>
@@ -200,3 +205,31 @@ $ git log main..<local_branch>
 
 === Comparing Remote and Local Branches ===
 $ git log origin/main..main
+
+=== Fix Authentication error w/ pushing to GitHub ===
+GitHub > Your Logo > Settings > Developer settings > Personal access tokens > Token (classic) > Generate New Token > Expires: 30 days > Enable scopes
+Copy token: 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
+Source: https://github.com/settings/tokens
+Tip: use the token as your password
+
+=== Fix Authentication error w/ cloning from GitHub ===
+# Generate Key Pairs using Git ssh-keygen
+	$ ssh-keygen
+	# Source: /Users/trung/.ssh/id_rsa
+	$ cd /Users/trung/.ssh/
+	Note: private key is id_rsa and public key is id_rsa.pub
+	$ cat id_rsa.pub
+	# Copy
+# Add Public Key to GitHub Account
+	GitHub > Logo > Settings > SSH and GPG keys > New SSH key > Title: newssh4testrepo
+	# Paste > Add SSH key
+	# Source: https://github.com/settings/keys
+# Run ssh-agent manually
+	$ eval "$(ssh-agent -s)"
+# Add private key in ssh agent
+	$ ssh-add /Users/trung/.ssh/id_rsa
+	$ ssh-add -l
+clone git git@github.com:trungdullc/test_repo.git
+	$ cd Desktop
+	# get SSH link from GitHub
+	$ git clone git@github.com:trungdullc/test_repo.git
